@@ -1,0 +1,2164 @@
+/* ---------------------------------------------------------------------------
+   صفحهٔ معرفی حضوریار
+   ---------------------------------------------------------------------------
+   جهت‌گیری برند: سبز عمیق + طلایی + بومِ روشنِ گرم — «هیرو تیره، بدنهٔ روشن».
+   فقط هیرو، صحنهٔ اسکرولی و پاورقی تیره‌اند (سبز عمیق برند)؛ بقیهٔ صفحه روی
+   بومِ روشن و کارت‌های سفید می‌نشیند.
+
+   قواعد ثابت:
+   • --brand (سبز) فقط برای آیکون و لهجه‌های کوچکِ روی سطوح روشن.
+   • --accent (طلایی) فقط برای برجسته/پیشنهادی/نشان — هرگز رنگِ دکمهٔ اصلی
+     در بخش‌های روشن؛ تنها دکمهٔ هیرو (که خودش روی زمینهٔ سبز است) طلایی است.
+   • --success (سبز واقعیِ وضعیت) مجزا از --brand است؛ فقط برای لحظه‌های
+     «تأیید/ثبتِ موفق» (کارنامهٔ روز، مُهرِ ثبت در صحنهٔ اسکرولی).
+   • مرجانی (--signal) فقط معنای «رد شد» را دارد.
+   • خطوط مویی به‌جای سایهٔ نرم؛ شبکهٔ سوئیسی؛ ارقام فارسیِ هم‌عرض.
+--------------------------------------------------------------------------- */
+
+.lp {
+  --void: #f7f5f0;
+  --surface: #ffffff;
+  --surface-2: #f1eee6;
+  --surface-3: #e9e4d6;
+  --line: #e4e0d3;
+  --line-2: #d8d2bf;
+
+  --ink: #1c2420;
+  --ink-2: #3d4740;
+  --ink-3: #6b756f;
+
+  /* سبز برند — آیکون و لهجه‌های کوچک روی سطوح روشن */
+  --brand: #365c4a;
+  --brand-dark: #243f34;
+  --brand-wash: rgba(54, 92, 74, 0.08);
+  --brand-line: rgba(54, 92, 74, 0.28);
+
+  /* طلایی — فقط برجسته/پیشنهادی/نشان/جزئیات برند */
+  --accent: #c9a86a;
+  --accent-hover: #d8bd85;
+  --accent-ink: #243f34;
+  --accent-wash: rgba(201, 168, 106, 0.14);
+  --accent-line: rgba(201, 168, 106, 0.4);
+
+  /* سبزِ واقعیِ وضعیت — مجزا از سبز برند، فقط برای تأیید/ثبتِ موفق */
+  --success: #16a34a;
+  --success-glow: rgba(22, 163, 74, 0.3);
+
+  /* هالهٔ محیطیِ تزئینی (نه لهجهٔ هاور) — روی بومِ روشن، سبزِ برندِ کم‌رنگ */
+  --glow: rgba(54, 92, 74, 0.22);
+  /* هالهٔ دومِ پس‌زمینهٔ هیرو — سبزِ برند به‌جای بنفش، برای یکدستیِ پالت */
+  --violet: rgba(54, 92, 74, 0.18);
+  --signal: #c4463a;
+  --signal-wash: rgba(196, 70, 58, 0.08);
+
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 72px;
+  --s7: 112px;
+  --edge: 20px;
+
+  position: relative;
+  color: var(--ink);
+  background: var(--void);
+  overflow-x: clip;
+}
+
+@media (min-width: 768px) {
+  .lp {
+    --edge: 40px;
+  }
+}
+
+/* حالت تاریک: فقط توکن‌های پایهٔ صفحه عوض می‌شوند. هیرو، صحنهٔ اسکرولی، پاورقی و کارنامهٔ
+   روی هیرو توکن‌های محلی خودشان را دارند و مثل قبل تیره/ثابت می‌مانند. --brand-dark عمداً
+   دست‌نخورده است چون زمینهٔ همان بخش‌های سبز عمیق است. */
+:root[data-theme="dark"] .lp {
+  --void: #10160f;
+  --surface: #1a221b;
+  --surface-2: #232c22;
+  --surface-3: #2d372a;
+  --line: #263028;
+  --line-2: #3a463a;
+
+  --ink: #eef1ec;
+  --ink-2: #c4cdc2;
+  --ink-3: #8b968c;
+
+  --brand: #6ba184;
+  --brand-hover: #86bc9d;
+  --on-brand: #0f1a14;
+  --brand-wash: rgba(107, 161, 132, 0.14);
+  --brand-line: rgba(107, 161, 132, 0.38);
+
+  --success: #34d399;
+  --success-glow: rgba(52, 211, 153, 0.3);
+
+  --glow: rgba(107, 161, 132, 0.25);
+  --violet: rgba(107, 161, 132, 0.2);
+  --signal: #f0705f;
+  --signal-wash: rgba(240, 112, 95, 0.12);
+  color-scheme: dark;
+}
+
+/* دکمهٔ تغییر تم در ناوبری */
+.lp-theme-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color 170ms ease-out, border-color 170ms ease-out, background-color 170ms ease-out;
+}
+
+.lp-theme-btn:hover {
+  color: var(--brand);
+  border-color: var(--brand);
+  background: var(--brand-wash);
+}
+
+.lp ul,
+.lp ol {
+  list-style: none;
+}
+
+.lp time,
+.lp .num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.lp .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- شبکه ---------- */
+.lp-wrap {
+  width: min(1240px, 100%);
+  margin-inline: auto;
+  padding-inline: var(--edge);
+}
+
+.lp-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--s3);
+}
+
+/* ---------- تایپوگرافی ---------- */
+.lp-display {
+  font-size: clamp(2.5rem, 7.4vw, 4.9rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.034em;
+}
+
+.lp-display em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.lp-h2 {
+  font-size: clamp(1.75rem, 4.2vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.024em;
+}
+
+.lp-h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.lp-lead {
+  font-size: clamp(1.02rem, 1.6vw, 1.16rem);
+  line-height: 1.88;
+  color: var(--ink-2);
+}
+
+.lp-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+}
+
+.lp-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.lp-label b {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- دکمه‌ها ---------- */
+.lp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 14px 26px;
+  border: 1px solid var(--brand);
+  border-radius: 3px;
+  background: var(--brand);
+  color: var(--on-brand, #fff);
+  font: inherit;
+  font-weight: 800;
+  font-size: 0.97rem;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 0 0 0 var(--brand-line);
+  transition: box-shadow 220ms ease-out, background-color 180ms ease-out,
+    transform 120ms ease-out;
+}
+
+.lp-btn:hover {
+  background: var(--brand-hover, var(--brand-dark));
+  border-color: var(--brand-hover, var(--brand-dark));
+  box-shadow: 0 0 34px -4px var(--brand-line);
+}
+
+.lp-btn:active {
+  transform: translateY(1px);
+}
+
+/* دکمهٔ اصلیِ هیرو — طلایی، چون خودش روی زمینهٔ سبز عمیق می‌نشیند */
+.lp-hero .lp-btn {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 0 0 0 var(--glow);
+}
+
+.lp-hero .lp-btn:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  box-shadow: 0 0 34px -4px var(--glow);
+}
+
+.lp-btn-line {
+  background: transparent;
+  border-color: var(--line-2);
+  color: var(--ink);
+}
+
+.lp-btn-line:hover {
+  background: var(--brand-wash);
+  border-color: var(--brand);
+  color: var(--brand);
+  box-shadow: none;
+}
+
+.lp-btn-sm {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+}
+
+.lp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.97rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 170ms ease-out;
+}
+
+.lp-link:hover {
+  border-bottom-color: currentColor;
+}
+
+.lp-link svg {
+  transition: transform 200ms ease-out;
+}
+
+.lp-link:hover svg {
+  transform: translateX(-4px);
+}
+
+.lp a:focus-visible,
+.lp button:focus-visible,
+.lp summary:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.lp-hero :focus-visible,
+.lp-stage :focus-visible,
+.lp-footer :focus-visible {
+  outline-color: var(--accent);
+}
+
+/* ---------- ناوبری ---------- */
+.lp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: color-mix(in srgb, var(--void) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.lp-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  height: 68px;
+}
+
+.lp-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 44px;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 1.08rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.lp-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 18px -6px var(--glow);
+}
+
+/* داخل ناوبری (زمینهٔ روشن) نشان لوگو سبز است، نه طلایی */
+.lp-nav .lp-mark {
+  border-color: var(--brand);
+  color: var(--brand);
+  box-shadow: none;
+}
+
+.lp-nav-links {
+  display: none;
+  align-items: center;
+  gap: var(--s4);
+}
+
+@media (min-width: 940px) {
+  .lp-nav-links {
+    display: flex;
+  }
+}
+
+.lp-nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  color: var(--ink-2);
+  font-size: 0.94rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 170ms ease-out;
+}
+
+.lp-nav-links a:hover {
+  color: var(--brand);
+}
+
+.lp-nav-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.lp-nav-signin {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding-inline: 10px;
+  color: var(--ink-2);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.lp-nav-signin:hover {
+  color: var(--brand);
+}
+
+@media (min-width: 560px) {
+  .lp-nav-signin {
+    display: inline-flex;
+  }
+}
+
+/* ---------- قهرمان ---------- */
+/* تنها بخشِ تیرهٔ صفحه (به‌همراه صحنهٔ اسکرولی و پاورقی) — توکن‌ها محلی
+   بازتعریف می‌شوند تا بقیهٔ صفحه (بومِ روشن) دست‌نخورده بماند. */
+.lp-hero {
+  --ink: #ffffff;
+  --ink-2: #e7ece9;
+  --ink-3: #b9c4bd;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-2: rgba(255, 255, 255, 0.22);
+  --glow: rgba(201, 168, 106, 0.3);
+  --violet: rgba(54, 92, 74, 0.4);
+
+  position: relative;
+  padding-block: var(--s6) var(--s5);
+  background: var(--brand-dark);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+/* هالهٔ محیطی: نعنایی + بنفش. فقط پس‌زمینه، هرگز رنگِ عنصر. */
+.lp-hero::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  inset-inline-start: -10%;
+  width: 70%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--glow), transparent 62%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.lp-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -45%;
+  inset-inline-end: -5%;
+  width: 55%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--violet), transparent 65%);
+  pointer-events: none;
+}
+
+.lp-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 900px) {
+  .lp-hero {
+    padding-block: var(--s7) var(--s6);
+  }
+}
+
+.lp-hero-type {
+  grid-column: 1 / -1;
+}
+
+.lp-hero-art {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1000px) {
+  .lp-hero-type {
+    grid-column: 1 / span 6;
+  }
+  .lp-hero-art {
+    grid-column: 8 / span 5;
+    align-self: center;
+  }
+}
+
+.lp-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: var(--s2);
+  margin-bottom: var(--s3);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+
+.lp-kicker span {
+  color: var(--accent);
+}
+
+.lp-hero-sub {
+  max-width: 46ch;
+  margin-top: var(--s3);
+}
+
+.lp-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3);
+  margin-top: var(--s4);
+}
+
+.lp-facts {
+  display: grid;
+  margin-top: var(--s5);
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 620px) {
+  .lp-facts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.lp-fact {
+  padding: var(--s2) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 620px) {
+  .lp-fact {
+    padding: var(--s3) var(--s3) var(--s3) 0;
+    border-bottom: none;
+    border-inline-start: 1px solid var(--line);
+    padding-inline-start: var(--s3);
+  }
+  .lp-fact:first-child {
+    border-inline-start: none;
+    padding-inline-start: 0;
+  }
+}
+
+.lp-fact b {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.lp-fact span {
+  display: block;
+  margin-top: 3px;
+  color: var(--ink-3);
+  font-size: 0.87rem;
+  line-height: 1.7;
+}
+
+/* ---------- کارنامهٔ روز ---------- */
+/* کارتی سفید که روی هیروی تیره شناور است — توکن‌ها اینجا به‌حالت روشن
+   برمی‌گردند و «تأیید شد» با سبزِ واقعیِ وضعیت نشان داده می‌شود، نه طلایی. */
+.lp-hero .lp-sheet {
+  --surface: #ffffff;
+  --surface-2: #f1eee6;
+  --surface-3: #e9e4d6;
+  --ink: #1c2420;
+  --ink-2: #3d4740;
+  --ink-3: #6b756f;
+  --line: #e4e0d3;
+  --line-2: #d8d2bf;
+  --accent: #16a34a;
+  --glow: rgba(22, 163, 74, 0.25);
+}
+
+.lp-sheet {
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  box-shadow: 0 40px 90px -50px rgba(28, 36, 32, 0.4), 0 0 60px -30px var(--glow);
+}
+
+.lp-sheet-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding: 14px var(--s3);
+  border-bottom: 1px solid var(--line-2);
+  background: var(--surface-2);
+}
+
+.lp-sheet-head b {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.lp-sheet-head span {
+  color: var(--ink-3);
+  font-size: 0.8rem;
+}
+
+.lp-sheet-body {
+  padding: var(--s3);
+}
+
+.lp-sheet-person {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.lp-sheet-person b {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.lp-sheet-person span {
+  color: var(--ink-3);
+  font-size: 0.83rem;
+}
+
+.lp-timeline {
+  margin-top: var(--s3);
+}
+
+.lp-timeline-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  color: var(--ink-3);
+  font-size: 0.72rem;
+}
+
+.lp-track {
+  position: relative;
+  height: 34px;
+  border: 1px solid var(--line);
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(12.5% - 1px),
+    var(--line) calc(12.5% - 1px),
+    var(--line) 12.5%
+  );
+}
+
+.lp-track-shift {
+  position: absolute;
+  inset-block: 0;
+  right: 4%;
+  width: 78%;
+  background: var(--surface-3);
+}
+
+.lp-track-actual {
+  position: absolute;
+  inset-block: 6px;
+  right: 2.5%;
+  width: 81%;
+  background: var(--accent);
+  box-shadow: 0 0 22px -4px var(--glow);
+}
+
+.lp-track-late {
+  position: absolute;
+  inset-block: 6px;
+  left: 2.5%;
+  width: 5.5%;
+  background: var(--signal);
+}
+
+.lp-track-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin-top: 10px;
+  font-size: 0.76rem;
+  color: var(--ink-3);
+}
+
+.lp-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lp-swatch i {
+  width: 11px;
+  height: 11px;
+  flex: none;
+}
+
+.lp-swatch.is-work i {
+  background: var(--accent);
+}
+.lp-swatch.is-extra i {
+  background: var(--signal);
+}
+.lp-swatch.is-shift i {
+  background: var(--surface-3);
+  border: 1px solid var(--line-2);
+}
+
+.lp-punches {
+  margin-top: var(--s3);
+  border-top: 1px solid var(--line);
+}
+
+.lp-punch {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--s2);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.lp-punch-time {
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.lp-punch-what {
+  color: var(--ink-3);
+  font-size: 0.85rem;
+}
+
+.lp-punch-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.lp-punch-verify.is-wifi {
+  color: var(--ink-2);
+}
+
+.lp-sheet-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  padding-top: 14px;
+}
+
+.lp-sheet-foot div {
+  flex: 1;
+  min-width: 88px;
+}
+
+.lp-sheet-foot span {
+  display: block;
+  color: var(--ink-3);
+  font-size: 0.76rem;
+}
+
+.lp-sheet-foot b {
+  display: block;
+  margin-top: 2px;
+  font-size: 1.14rem;
+  font-weight: 700;
+}
+
+.lp-sheet-foot b.is-ok {
+  color: var(--accent);
+}
+
+/* ===========================================================================
+   صحنهٔ ثبت ورود — روایتِ اسکرولی
+   یک ورودِ واقعی لحظه‌به‌لحظه: رسیدن → جست‌وجوی ماهواره → قطعیِ GPS →
+   شناساییِ مودم → مُهرِ ثبت. جاوااسکریپت فقط data-scene را عوض می‌کند؛
+   بقیه CSS است تا هر فریم رندرِ ری‌اکت نخورد.
+=========================================================================== */
+
+/* صحنه هم تیره است (ادامهٔ بصریِ هیرو): طلایی = در حال جست‌وجو/تشخیص،
+   قرمز = رد شد، سبزِ واقعیِ وضعیت = ثبتِ نهاییِ موفق. */
+.lp-stage {
+  --ink: #ffffff;
+  --ink-2: #e7ece9;
+  --ink-3: #b9c4bd;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-2: rgba(255, 255, 255, 0.22);
+  --glow: rgba(201, 168, 106, 0.3);
+  --signal: #ff6b5a;
+  --success: #22c55e;
+  --success-glow: rgba(34, 197, 94, 0.4);
+
+  position: relative;
+  height: 460vh;
+  background: linear-gradient(180deg, var(--brand-dark), #182922 40%, var(--brand-dark));
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 700px) {
+  .lp-stage {
+    height: 400vh;
+  }
+}
+
+.lp-stage-pin {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--s3);
+  padding: var(--s4) var(--edge);
+}
+
+.lp-stage-pin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at 50% 44%, #000 18%, transparent 76%);
+  -webkit-mask-image: radial-gradient(circle at 50% 44%, #000 18%, transparent 76%);
+  pointer-events: none;
+}
+
+/* هالهٔ صحنه که با مرحله رنگ عوض می‌کند */
+.lp-stage-pin::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 50%;
+  translate: 50% -50%;
+  width: min(760px, 120vw);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--glow), transparent 58%);
+  opacity: 0.28;
+  pointer-events: none;
+  transition: opacity 500ms ease-out, background 500ms ease-out;
+}
+
+.lp-stage-pin[data-scene="2"]::after {
+  background: radial-gradient(circle, rgba(255, 107, 90, 0.34), transparent 58%);
+  opacity: 0.4;
+}
+
+.lp-stage-pin[data-scene="4"]::after {
+  opacity: 0.6;
+}
+
+.lp-stage-top,
+.lp-stage-body,
+.lp-stage-foot {
+  position: relative;
+  z-index: 1;
+}
+
+.lp-stage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+}
+
+.lp-rail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lp-rail i {
+  width: 26px;
+  height: 2px;
+  background: var(--line-2);
+  transition: background-color 320ms ease-out, box-shadow 320ms ease-out;
+}
+
+.lp-rail i.is-done {
+  background: var(--accent);
+  box-shadow: 0 0 12px -2px var(--glow);
+}
+
+@media (max-width: 560px) {
+  .lp-rail i {
+    width: 16px;
+  }
+}
+
+.lp-stage-body {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+
+.lp-scope {
+  position: relative;
+  width: min(300px, 62vmin);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.lp-clock {
+  position: relative;
+  z-index: 3;
+  font-size: clamp(2.6rem, 11vmin, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: color 340ms ease-out, transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    text-shadow 340ms ease-out;
+}
+
+[data-scene="2"] .lp-clock {
+  color: var(--signal);
+}
+
+[data-scene="4"] .lp-clock {
+  color: var(--success);
+  transform: translateY(-6px) scale(1.04);
+  text-shadow: 0 0 40px var(--success-glow);
+}
+
+.lp-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.35);
+  transition: opacity 420ms ease-out, transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 380ms ease-out;
+}
+
+.lp-ring.r2 {
+  inset: 15%;
+}
+.lp-ring.r3 {
+  inset: 30%;
+}
+
+[data-scene="0"] .lp-ring,
+[data-scene="1"] .lp-ring {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[data-scene="1"] .lp-ring {
+  border-color: var(--accent-line);
+}
+
+[data-scene="2"] .lp-ring {
+  opacity: 0.55;
+  transform: scale(1.22);
+  border-color: rgba(255, 107, 90, 0.6);
+  border-style: dashed;
+}
+
+[data-scene="3"] .lp-ring,
+[data-scene="4"] .lp-ring {
+  opacity: 0;
+  transform: scale(1.5);
+}
+
+.lp-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0;
+  background: conic-gradient(from 0deg, transparent 0deg, var(--glow) 44deg, transparent 84deg);
+  transition: opacity 380ms ease-out;
+}
+
+[data-scene="1"] .lp-sweep {
+  opacity: 1;
+  animation: lp-spin 1.5s linear infinite;
+}
+
+@keyframes lp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lp-fail {
+  position: absolute;
+  z-index: 4;
+  color: var(--signal);
+  opacity: 0;
+  transform: scale(0.4) rotate(-14deg);
+  transition: opacity 300ms ease-out, transform 420ms cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+[data-scene="2"] .lp-fail {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.lp-arcs {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(0.75);
+  transition: opacity 420ms ease-out, transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-scene="3"] .lp-arcs {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[data-scene="4"] .lp-arcs {
+  opacity: 0.16;
+  transform: scale(1.1);
+}
+
+.lp-arcs svg {
+  width: 76%;
+  height: auto;
+  color: var(--accent);
+  filter: drop-shadow(0 0 14px var(--glow));
+}
+
+.lp-arcs path {
+  stroke-dasharray: 92;
+  stroke-dashoffset: 92;
+}
+
+[data-scene="3"] .lp-arcs path {
+  animation: lp-draw 700ms ease-out forwards;
+}
+
+[data-scene="3"] .lp-arcs path:nth-child(2) {
+  animation-delay: 130ms;
+}
+[data-scene="3"] .lp-arcs path:nth-child(3) {
+  animation-delay: 260ms;
+}
+
+@keyframes lp-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.lp-stamp {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  gap: 3px;
+  place-items: center;
+  padding: 14px 26px;
+  border: 3px solid var(--success);
+  color: var(--success);
+  background: rgba(24, 41, 34, 0.82);
+  box-shadow: 0 0 50px -8px var(--success-glow);
+  opacity: 0;
+  transform: scale(2.6) rotate(-12deg);
+  transition: opacity 170ms ease-out, transform 480ms cubic-bezier(0.15, 1.5, 0.4, 1);
+}
+
+.lp-stamp b {
+  font-size: clamp(1.2rem, 4.6vmin, 1.7rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.lp-stamp span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+}
+
+[data-scene="4"] .lp-stamp {
+  opacity: 1;
+  transform: scale(1) rotate(-7deg);
+}
+
+.lp-stage-foot {
+  min-height: 138px;
+  display: grid;
+  align-content: end;
+  justify-items: center;
+  text-align: center;
+}
+
+.lp-caption {
+  grid-area: 1 / 1;
+  max-width: 46ch;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 340ms ease-out, transform 340ms ease-out;
+  pointer-events: none;
+}
+
+.lp-caption.is-on {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.lp-caption b {
+  display: block;
+  font-size: clamp(1.15rem, 3.4vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+}
+
+.lp-caption p {
+  margin-top: 10px;
+  color: var(--ink-2);
+  font-size: 0.94rem;
+  line-height: 1.85;
+}
+
+.lp-caption.is-fail b {
+  color: var(--signal);
+}
+
+.lp-caption.is-pass b {
+  color: var(--success);
+}
+
+.lp-scrollcue {
+  position: absolute;
+  bottom: 0;
+  inset-inline-start: 50%;
+  translate: 50% 0;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  transition: opacity 300ms ease-out;
+}
+
+.lp-stage-pin:not([data-scene="0"]) .lp-scrollcue {
+  opacity: 0;
+}
+
+.lp-scrollcue i {
+  display: block;
+  width: 1px;
+  height: 26px;
+  background: currentColor;
+  transform-origin: top;
+  animation: lp-cue 1.8s ease-in-out infinite;
+}
+
+@keyframes lp-cue {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* ---------- نوار بیانیه ---------- */
+.lp-statement {
+  padding-block: var(--s5);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.lp-statement p {
+  max-width: 30ch;
+  font-size: clamp(1.3rem, 3.4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: -0.02em;
+}
+
+.lp-statement p em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+/* ---------- بخش عمومی ---------- */
+.lp-section {
+  padding-block: var(--s6);
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .lp-section {
+    padding-block: var(--s7);
+  }
+}
+
+.lp-section-head {
+  margin-bottom: var(--s5);
+}
+
+.lp-section-head .lp-h2 {
+  margin-top: var(--s3);
+  max-width: 20ch;
+}
+
+.lp-section-head .lp-lead {
+  margin-top: var(--s2);
+  max-width: 54ch;
+}
+
+/* ---------- امکانات ---------- */
+.lp-feat-lead {
+  grid-column: 1 / -1;
+  padding: var(--s4);
+  border: 1px solid var(--brand-line);
+  background: linear-gradient(160deg, var(--brand-wash), transparent 70%), var(--surface);
+}
+
+.lp-feat-rest {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1000px) {
+  .lp-feat-lead {
+    grid-column: 1 / span 5;
+  }
+  .lp-feat-rest {
+    grid-column: 6 / span 7;
+  }
+}
+
+.lp-feat-lead .lp-h3 {
+  margin-top: var(--s3);
+  font-size: 1.5rem;
+  line-height: 1.45;
+}
+
+.lp-feat-lead p {
+  margin-top: var(--s2);
+  color: var(--ink-2);
+  font-size: 0.96rem;
+  line-height: 1.85;
+}
+
+.lp-rows {
+  border-top: 1px solid var(--line);
+}
+
+.lp-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s3);
+  padding: var(--s3) var(--s2);
+  margin-inline: calc(var(--s2) * -1);
+  border-bottom: 1px solid var(--line);
+  transition: background-color 200ms ease-out;
+}
+
+@media (min-width: 620px) {
+  .lp-row {
+    grid-template-columns: 30px 1fr 1.15fr;
+    align-items: baseline;
+  }
+}
+
+.lp-row:hover {
+  background: var(--brand-wash);
+}
+
+.lp-row-ico {
+  color: var(--brand);
+  align-self: start;
+}
+
+.lp-row p {
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 619px) {
+  .lp-row p {
+    grid-column: 2;
+    margin-top: 5px;
+  }
+}
+
+/* ---------- گزارش ---------- */
+.lp-report {
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+.lp-report table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.lp-report th,
+.lp-report td {
+  padding: 13px var(--s2);
+  text-align: right;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.lp-report th {
+  background: var(--surface-2);
+  color: var(--ink-3);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.lp-report td {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+.lp-report tbody tr:hover td {
+  background: var(--brand-wash);
+}
+
+.lp-report tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.lp-report tfoot td {
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom: none;
+}
+
+.lp-pill {
+  display: inline-block;
+  padding: 2px 9px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  border: 1px solid currentColor;
+}
+
+.lp-pill.is-ok {
+  color: var(--success);
+}
+.lp-pill.is-late {
+  color: var(--signal);
+}
+.lp-pill.is-off {
+  color: var(--ink-3);
+}
+
+/* نشانِ «پیشنهادی» روی کارتِ پلن — طلایی، چون خودش یک برجستگی/نشان است */
+.lp-plan .lp-pill.is-ok {
+  color: var(--accent);
+}
+
+/* ---------- اختلال GPS ---------- */
+.lp-case-type {
+  grid-column: 1 / -1;
+}
+.lp-case-art {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1000px) {
+  .lp-case-type {
+    grid-column: 1 / span 5;
+  }
+  .lp-case-art {
+    grid-column: 7 / span 6;
+  }
+}
+
+.lp-decision {
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+}
+
+.lp-node {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s3);
+  padding: var(--s3);
+  border-bottom: 1px solid var(--line);
+}
+
+.lp-node:last-child {
+  border-bottom: none;
+}
+
+.lp-node-key {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border: 1px solid var(--line-2);
+  color: var(--ink-3);
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.lp-node.is-fail .lp-node-key {
+  border-color: var(--signal);
+  color: var(--signal);
+  background: var(--signal-wash);
+}
+
+.lp-node.is-pass .lp-node-key {
+  border-color: var(--success);
+  color: #fff;
+  background: var(--success);
+  box-shadow: 0 0 20px -4px var(--success-glow);
+}
+
+.lp-node-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.lp-node-verdict {
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.lp-node.is-fail .lp-node-verdict {
+  color: var(--signal);
+}
+.lp-node.is-pass .lp-node-verdict {
+  color: var(--success);
+}
+
+.lp-node p {
+  margin-top: 5px;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.lp-note {
+  margin-top: var(--s2);
+  color: var(--ink-3);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+/* ---------- گام‌ها ---------- */
+.lp-steps {
+  border-top: 1px solid var(--line);
+}
+
+.lp-step {
+  display: grid;
+  gap: var(--s1) var(--s4);
+  padding: var(--s4) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 760px) {
+  .lp-step {
+    grid-template-columns: 90px 1fr 1.3fr;
+    align-items: baseline;
+  }
+}
+
+.lp-step-n {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--line-2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  transition: color 200ms ease-out;
+}
+
+.lp-step:hover .lp-step-n {
+  color: var(--brand);
+}
+
+.lp-step p {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.85;
+}
+
+/* ---------- تعرفه ---------- */
+.lp-plans {
+  display: grid;
+  gap: 1px;
+  background: var(--line-2);
+  border: 1px solid var(--line-2);
+}
+
+@media (min-width: 820px) {
+  .lp-plans {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .lp-plans {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.lp-plan {
+  padding: var(--s4);
+  background: var(--surface);
+}
+
+.lp-plan.is-main {
+  background: linear-gradient(170deg, var(--accent-wash), transparent 60%), var(--surface-2);
+}
+
+.lp-plan-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+
+.lp-plan-price {
+  margin-top: var(--s3);
+  padding-bottom: var(--s3);
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(1.9rem, 4.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.lp-plan-price small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ink-3);
+}
+
+.lp-plan ul {
+  margin: var(--s3) 0 var(--s4);
+  display: grid;
+  gap: 12px;
+}
+
+.lp-plan li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 11px;
+  align-items: start;
+  font-size: 0.93rem;
+  line-height: 1.72;
+  color: var(--ink-2);
+}
+
+.lp-plan li svg {
+  margin-top: 5px;
+  color: var(--brand);
+}
+
+/* ---------- پرسش‌ها ---------- */
+.lp-faq {
+  border-top: 1px solid var(--line);
+}
+
+.lp-faq details {
+  border-bottom: 1px solid var(--line);
+}
+
+.lp-faq summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 64px;
+  padding: var(--s2) 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.65;
+  transition: color 170ms ease-out;
+}
+
+.lp-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.lp-faq summary:hover {
+  color: var(--brand);
+}
+
+.lp-plus {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.lp-plus::before,
+.lp-plus::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 220ms ease-out;
+}
+
+.lp-plus::after {
+  transform: rotate(90deg);
+}
+
+.lp-faq details[open] .lp-plus::after {
+  transform: rotate(0deg);
+}
+
+.lp-faq-body {
+  max-width: 68ch;
+  padding-bottom: var(--s3);
+  color: var(--ink-2);
+  font-size: 0.94rem;
+  line-height: 1.95;
+}
+
+/* ---------- فراخوان پایانی ---------- */
+.lp-cta {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--s6);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.lp-cta::before {
+  content: "";
+  position: absolute;
+  bottom: -60%;
+  inset-inline-start: 50%;
+  translate: 50% 0;
+  width: min(900px, 130vw);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--glow), transparent 60%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.lp-cta > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 900px) {
+  .lp-cta {
+    padding-block: var(--s7);
+  }
+}
+
+.lp-cta-type {
+  grid-column: 1 / -1;
+}
+.lp-cta-act {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 900px) {
+  .lp-cta-type {
+    grid-column: 1 / span 7;
+  }
+  .lp-cta-act {
+    grid-column: 9 / span 4;
+    align-self: end;
+  }
+}
+
+.lp-cta h2 {
+  font-size: clamp(1.9rem, 5.2vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.03em;
+}
+
+.lp-cta p {
+  max-width: 44ch;
+  margin-top: var(--s3);
+  color: var(--ink-2);
+  line-height: 1.9;
+}
+
+.lp-cta .lp-btn {
+  width: 100%;
+}
+
+.lp-cta-phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  margin-top: var(--s2);
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.lp-cta-phone:hover {
+  color: var(--brand);
+}
+
+/* ---------- پاورقی ---------- */
+/* تیره، مثل هیرو — نشان لوگو و هاورِ لینک‌ها همان طلاییِ پیش‌فرض ریشه می‌ماند
+   (جزئیات برند روی زمینهٔ تیره). */
+.lp-footer {
+  --ink-2: #cfd6d1;
+  --ink-3: #94a39b;
+  --line: rgba(255, 255, 255, 0.14);
+
+  padding-block: var(--s5);
+  background: var(--brand-dark);
+}
+
+.lp-footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+
+.lp-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+}
+
+.lp-footer-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding-inline: 12px;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 170ms ease-out;
+}
+
+.lp-footer-links a:hover {
+  color: var(--accent);
+}
+
+.lp-footer-note {
+  width: 100%;
+  padding-top: var(--s3);
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.84rem;
+  line-height: 1.8;
+}
+
+/* ---------- ظهور تدریجی (با GSAP) ---------- */
+/* حالت اولیهٔ مخفی فقط برای جلوگیری از پرش محتوا پیش از اجرای جاوااسکریپت؛
+   خودِ انیمیشن (فید و جابه‌جایی) را GSAP در app/page.tsx کنترل می‌کند. */
+.lp-reveal,
+.lp-plans .lp-plan,
+.lp-feat-rest .lp-row,
+.lp-faq details,
+[data-hero-item] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* ---------- کاهش حرکت ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lp *,
+  .lp *::before,
+  .lp *::after {
+    animation: none !important;
+    transition-duration: 1ms !important;
+  }
+
+  .lp-reveal,
+  .lp-plans .lp-plan,
+  .lp-feat-rest .lp-row,
+  .lp-faq details,
+  [data-hero-item] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* صحنه به یک بخش ساده و ثابت تبدیل می‌شود */
+  .lp-stage {
+    height: auto;
+  }
+
+  .lp-stage-pin {
+    position: static;
+    height: auto;
+    padding-block: var(--s6);
+  }
+
+  .lp-scrollcue {
+    display: none;
+  }
+
+  .lp-stage-foot {
+    min-height: 0;
+  }
+
+  .lp-caption {
+    grid-area: auto;
+    opacity: 1;
+    transform: none;
+    padding-top: var(--s3);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   بلاگ — بخش تازه‌ترین مطالب در صفحهٔ معرفی، فهرست کامل و صفحهٔ خودِ مطلب.
+   همان قواعد صفحهٔ معرفی: کارت سفید با خط مویی، بدون سایهٔ نرم، لهجهٔ طلایی
+   فقط برای برچسب دسته و پیوند «ادامهٔ مطلب».
+--------------------------------------------------------------------------- */
+
+/* سربرگ صفحات بلاگ (فهرست و مطلب) — بومِ روشن، نه هیروِ تیره */
+.lp-pagehead {
+  padding-block: var(--s5) var(--s4);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--surface), transparent);
+}
+
+@media (min-width: 900px) {
+  .lp-pagehead {
+    padding-block: var(--s6) var(--s5);
+  }
+}
+
+.lp-h1 {
+  margin-top: var(--s3);
+  max-width: 24ch;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.03em;
+}
+
+.lp-pagehead .lp-lead {
+  margin-top: var(--s2);
+  max-width: 58ch;
+}
+
+.lp-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.lp-crumb a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.lp-crumb a:hover {
+  text-decoration: underline;
+}
+
+/* سرِ بخش بلاگ در صفحهٔ معرفی: تیتر در یک سو، دکمهٔ «همهٔ مطالب» در سوی دیگر */
+.lp-blog-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+
+/* فیلتر دسته */
+.lp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+  margin-bottom: var(--s4);
+}
+
+.lp-tag {
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 170ms ease-out, color 170ms ease-out, background-color 170ms ease-out;
+}
+
+.lp-tag:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.lp-tag.is-on {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--on-brand, #fff);
+}
+
+/* شبکهٔ کارت‌ها */
+.lp-posts {
+  display: grid;
+  gap: var(--s3);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .lp-posts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1040px) {
+  .lp-posts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.lp-post {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: var(--s3);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: border-color 200ms ease-out, transform 200ms ease-out;
+}
+
+.lp-post:hover {
+  border-color: var(--brand-line);
+  transform: translateY(-2px);
+}
+
+.lp-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.lp-post-tag {
+  padding: 2px 9px;
+  border: 1px solid var(--accent-line);
+  background: var(--accent-wash);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.lp-post .lp-h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.lp-post .lp-h3 a:hover {
+  color: var(--brand);
+}
+
+.lp-post p {
+  flex: 1;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.85;
+}
+
+.lp-post-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  color: var(--accent-ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lp-post-more:hover {
+  color: var(--brand);
+}
+
+/* متن مطلب */
+.lp-article {
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
+.lp-article p {
+  margin-bottom: var(--s3);
+  color: var(--ink-2);
+  font-size: 1.03rem;
+  line-height: 2.05;
+}
+
+.lp-article .lp-h3 {
+  margin-top: var(--s5);
+  margin-bottom: var(--s2);
+  font-size: 1.35rem;
+  color: var(--ink);
+}
+
+.lp-article ul {
+  margin-bottom: var(--s3);
+  padding-inline-start: 0;
+}
+
+.lp-article li {
+  position: relative;
+  padding-inline-start: 22px;
+  margin-bottom: 12px;
+  color: var(--ink-2);
+  font-size: 1.01rem;
+  line-height: 1.95;
+}
+
+.lp-article li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.85em;
+  width: 7px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.lp-article-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  max-width: 68ch;
+  margin-inline: auto;
+  margin-top: var(--s5);
+  padding-top: var(--s3);
+  border-top: 1px solid var(--line);
+}
+
+/* globals.css به همهٔ دکمه‌ها width:100% و شعاع/رنگ می‌دهد؛ داخل سایت عمومی
+   دکمه‌ها باید هم‌اندازهٔ متن خودشان بمانند. */
+.lp button {
+  width: auto;
+  border-radius: 3px;
+}
+
+/* ---------- فرم درخواست تماس (جایگزین ثبت‌نام) ---------- */
+.lp-contact-form {
+  display: grid;
+  gap: 6px;
+  padding: var(--s3);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--void);
+}
+
+.lp-contact-form label {
+  margin-top: 8px;
+  color: var(--ink-2);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.lp-contact-form input,
+.lp-contact-form textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.lp-contact-form textarea {
+  resize: vertical;
+}
+
+.lp-contact-form input:focus-visible,
+.lp-contact-form textarea:focus-visible {
+  outline: 2px solid var(--brand-line);
+  outline-offset: 1px;
+  border-color: var(--brand);
+}
+
+.lp-contact-form .lp-btn {
+  margin-top: var(--s2);
+}
+
+.lp-contact-form .lp-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.lp-contact-error {
+  margin-top: 6px;
+  color: var(--signal);
+  font-size: 0.88rem;
+}
+
+.lp-contact-done {
+  padding: var(--s3);
+  border: 1px solid var(--brand-line);
+  border-radius: 4px;
+  background: var(--brand-wash);
+  color: var(--ink);
+  line-height: 1.9;
+}
+
+@media (min-width: 900px) {
+  .lp-cta-act.is-form {
+    grid-column: 8 / span 5;
+    align-self: start;
+  }
+}
