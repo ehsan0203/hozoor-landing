@@ -3,11 +3,16 @@ import Script from "next/script";
 import "./base.css";
 import ThemeInit from "@/components/ThemeInit";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "حضوریار — سامانهٔ حضور و غیاب",
-  description: "سامانهٔ حضور و غیاب مبتنی بر موقعیت مکانی و وای‌فای",
-  icons: { icon: "/icons/icon-192.png" },
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_TITLE, template: `%s — ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  icons: { icon: "/icons/icon-192.png", apple: "/icons/icon-192.png" },
+  openGraph: { siteName: SITE_NAME, locale: "fa_IR", type: "website" },
+  twitter: { card: "summary" },
 };
 
 export const viewport: Viewport = {

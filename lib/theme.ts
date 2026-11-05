@@ -1,4 +1,4 @@
-/// حالت نمایش برنامه: روشن، تاریک یا «خودکار» (مطابق تنظیم دستگاه).
+/// حالت نمایش برنامه: روشن، تاریک یا «خودکار» (مطابق تنظیم دستگاه). پیش‌فرض سایت «روشن» است.
 /// انتخاب کاربر در localStorage می‌ماند و روی <html data-theme="light|dark"> اعمال می‌شود.
 /// همین منطق به‌صورت اسکریپت درون‌خطی (THEME_INIT_SCRIPT) هم قبل از اولین رندر اجرا می‌شود تا
 /// هنگام بارگذاری صفحه‌ی تاریک، لحظه‌ای فلش سفید دیده نشود.
@@ -16,7 +16,7 @@ export function getThemePreference(): ThemePreference {
   } catch {
     /* localStorage در دسترس نیست */
   }
-  return "system";
+  return "light";
 }
 
 export function resolveTheme(pref: ThemePreference): ResolvedTheme {
@@ -59,4 +59,4 @@ export function setThemePreference(pref: ThemePreference): ResolvedTheme {
 }
 
 /// اسکریپتی که در <head> قبل از رندر اجرا می‌شود (باید مستقل و بدون import باشد).
-export const THEME_INIT_SCRIPT = `(function(){try{var p=null;try{p=localStorage.getItem("${STORAGE_KEY}")}catch(e){}var d=p==="dark"||(p!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
+export const THEME_INIT_SCRIPT = `(function(){try{var p=null;try{p=localStorage.getItem("${STORAGE_KEY}")}catch(e){}var d=p==="dark";document.documentElement.setAttribute("data-theme",d?"dark":"light");}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`;
