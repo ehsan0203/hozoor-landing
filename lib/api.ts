@@ -1,6 +1,6 @@
 import type { BlogPost, BlogPostDetail, PagedResult } from "./types";
 
-/// فقط مسیرهای عمومی بک‌اند حضوریار: بلاگ و درخواست تماس. این سایت ورود و نشست ندارد.
+/// فقط مسیرهای عمومی بک‌اند شاهد: بلاگ و درخواست تماس. این سایت ورود و نشست ندارد.
 
 interface ApiEnvelope<T> {
   success: boolean;

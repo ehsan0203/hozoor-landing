@@ -12,6 +12,7 @@ export function Hero() {
   return (
     <header className="lp-hero">
       <span className="lp-spot" aria-hidden="true" />
+      <span className="lp-hero-mark" aria-hidden="true" />
       <div className="lp-wrap lp-grid">
         <div className="lp-hero-type">
           <p className="lp-kicker" data-hero-item>
@@ -23,7 +24,7 @@ export function Hero() {
           </h1>
 
           <p className="lp-lead lp-hero-sub" data-hero-item>
-            کارکنان با موبایل خودشان ورود و خروج می‌زنند. حضوریار مکان و شبکهٔ وای‌فای را
+            کارکنان با موبایل خودشان ورود و خروج می‌زنند. شاهد مکان و شبکهٔ وای‌فای را
             راستی‌آزمایی می‌کند و کارکرد، تأخیر و اضافه‌کاری را تا لحظهٔ آخر ماه آمادهٔ حقوق
             نگه می‌دارد.
           </p>

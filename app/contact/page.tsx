@@ -7,13 +7,13 @@ import { MiniFaq } from "../sections/faq";
 import { ContactSteps } from "../sections/contact-steps";
 import { FinalCta } from "../sections/final-cta";
 
-const description = "درخواست مشاوره و دیدن سامانهٔ حضوریار: نام و شمارهٔ موبایل‌تان را بگذارید تا نمایندهٔ ما تماس بگیرد.";
+const description = "درخواست مشاوره و دیدن سامانهٔ شاهد: نام و شمارهٔ موبایل‌تان را بگذارید تا نمایندهٔ ما تماس بگیرد.";
 
 export const metadata: Metadata = {
   title: "تماس و درخواست مشاوره",
   description,
   alternates: { canonical: "/contact/" },
-  openGraph: { title: "تماس با حضوریار", description, url: "/contact/", type: "website" },
+  openGraph: { title: "تماس با شاهد", description, url: "/contact/", type: "website" },
 };
 
 export default function Page() {

@@ -2,8 +2,8 @@
 /// NEXT_PUBLIC_SITE_URL تنظیم می‌شود.
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://hozoor.wshare.ir").replace(/\/$/, "");
 
-export const SITE_NAME = "حضوریار";
-export const SITE_TITLE = "حضوریار — سامانهٔ حضور و غیاب با موبایل، حتی وقتی GPS قطع است";
+export const SITE_NAME = "شاهد";
+export const SITE_TITLE = "شاهد — سامانهٔ حضور و غیاب با موبایل، حتی وقتی GPS قطع است";
 export const SITE_DESCRIPTION =
   "ثبت ورود و خروج کارکنان با موبایل، با راستی‌آزمایی مکان و وای‌فای؛ حتی در اختلال GPS. محاسبهٔ خودکار تأخیر، اضافه‌کاری و فیش حقوقی. بدون دستگاه اثر انگشت.";
 

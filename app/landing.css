@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   صفحهٔ معرفی حضوریار
+   صفحهٔ معرفی شاهد
    ---------------------------------------------------------------------------
    جهت‌گیری برند: سبز عمیق + طلایی + بومِ روشنِ گرم — «هیرو تیره، بدنهٔ روشن».
    فقط هیرو، صحنهٔ اسکرولی و پاورقی تیره‌اند (سبز عمیق برند)؛ بقیهٔ صفحه روی
@@ -3016,7 +3016,7 @@ html.lenis body {
 }
 
 /* ===========================================================================
-   مقایسه: ستون حضوریار برجسته، ستون برچسب چسبنده (موبایل)، ردیف امتیاز
+   مقایسه: ستون شاهد برجسته، ستون برچسب چسبنده (موبایل)، ردیف امتیاز
    =========================================================================== */
 .lp-compare table {
   table-layout: auto;
@@ -4502,4 +4502,76 @@ html.lenis body {
 }
 .lp-contact-more {
   min-height: 44px;
+}
+
+/* ===========================================================================
+   برند شاهد: لوگو در ناوبری/پاورقی و نقش‌پس‌زمینه‌ها
+   =========================================================================== */
+.lp-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  flex: none;
+  text-decoration: none;
+}
+.lp-brand img {
+  display: block;
+  height: 46px;
+  width: auto;
+}
+@media (max-width: 559px) {
+  .lp-brand img {
+    height: 36px;
+  }
+}
+/* نسخهٔ روشن/تاریک لوگو بر پایهٔ data-theme (بدون فلش، بدون جاوااسکریپت) */
+.lp-brand-dark {
+  display: none !important;
+}
+:root[data-theme="dark"] .lp-brand-light {
+  display: none !important;
+}
+:root[data-theme="dark"] .lp-brand-dark {
+  display: block !important;
+}
+.lp-brand.is-footer img {
+  height: 54px;
+}
+
+/* نشان پین به‌صورت نقش بزرگ و کم‌رنگ */
+.lp-hero > .lp-hero-mark {
+  position: absolute;
+  z-index: 0;
+  inset-inline-start: -90px;
+  bottom: -70px;
+  width: min(430px, 70vw);
+  aspect-ratio: 132 / 158;
+  background: url("/brand/shahed-mark-glyph.svg") no-repeat center / contain;
+  opacity: 0.11;
+  pointer-events: none;
+}
+.lp-cta-mark {
+  position: absolute;
+  z-index: 0;
+  inset-inline-end: -50px;
+  bottom: -40px;
+  width: min(340px, 60vw);
+  aspect-ratio: 132 / 158;
+  background: url("/brand/shahed-mark-light.svg") no-repeat center / contain;
+  opacity: 0.09;
+  pointer-events: none;
+}
+.lp-404-mark {
+  width: 96px;
+  height: auto;
+}
+.lp-app-brandmark {
+  width: 24px;
+  height: 29px;
+  background: url("/brand/shahed-mark-light.svg") no-repeat center / contain;
+}
+
+/* لوزی‌های نوار کلمات هم‌رنگِ لوزی‌های لوگو (مرجانی) */
+.lp-ticker li i {
+  background: #f0705f;
 }

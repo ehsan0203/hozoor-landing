@@ -5,13 +5,13 @@ import { FaqExplorer } from "../sections/faq-explorer";
 import { FinalCta } from "../sections/final-cta";
 import { FAQ } from "@/lib/faq";
 
-const description = "پاسخ پرسش‌های متداول دربارهٔ حضوریار: ثبت از خانه، قطعی GPS و اینترنت، آیفون، نگه‌داری داده‌ها، پلن‌ها و قرارداد.";
+const description = "پاسخ پرسش‌های متداول دربارهٔ شاهد: ثبت از خانه، قطعی GPS و اینترنت، آیفون، نگه‌داری داده‌ها، پلن‌ها و قرارداد.";
 
 export const metadata: Metadata = {
   title: "پرسش‌های متداول",
   description,
   alternates: { canonical: "/faq/" },
-  openGraph: { title: "پرسش‌های متداول حضوریار", description, url: "/faq/", type: "website" },
+  openGraph: { title: "پرسش‌های متداول شاهد", description, url: "/faq/", type: "website" },
 };
 
 const structuredData = {
@@ -31,7 +31,7 @@ export default function Page() {
       <PageShell>
         <PageHead
           label="پرسش‌ها"
-          title="پرسش‌های متداول دربارهٔ حضوریار."
+          title="پرسش‌های متداول دربارهٔ شاهد."
           lead="پاسخ کوتاه به آنچه پیش از خرید می‌پرسند؛ بر اساس موضوع فیلتر کنید یا جستجو کنید."
         />
         <FaqExplorer />

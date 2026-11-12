@@ -38,7 +38,7 @@ function PunchScreen() {
           <small>سلام</small>
           <b>علی رضایی</b>
         </div>
-        <span className="lp-app-avatar">ع</span>
+        <span className="lp-app-brandmark" />
       </div>
 
       <div className="lp-app-card">
@@ -164,9 +164,9 @@ function ReportScreen() {
 }
 
 const SCREENS = [
-  { key: "punch" as const, title: "ثبت با یک لمس", text: "کارمند اپ را باز می‌کند و فاصلهٔ خودش تا محل کار را می‌بیند.", node: <PunchScreen />, alt: "نمونهٔ نمایشی صفحهٔ ثبت ورود اپ حضوریار" },
+  { key: "punch" as const, title: "ثبت با یک لمس", text: "کارمند اپ را باز می‌کند و فاصلهٔ خودش تا محل کار را می‌بیند.", node: <PunchScreen />, alt: "نمونهٔ نمایشی صفحهٔ ثبت ورود اپ شاهد" },
   { key: "outage" as const, title: "حتی وقتی GPS قطع است", text: "اپ خودکار سراغ وای‌فای دفتر می‌رود و ورود را ثبت می‌کند.", node: <OutageScreen />, alt: "نمونهٔ نمایشی ثبت ورود با وای‌فای هنگام قطعی GPS", featured: true },
-  { key: "report" as const, title: "کارنامه، همان لحظه", text: "کارکرد، تأخیر و مرخصی هر روز، بدون هیچ حساب‌وکتابی.", node: <ReportScreen />, alt: "نمونهٔ نمایشی کارنامهٔ هفتگی اپ حضوریار" },
+  { key: "report" as const, title: "کارنامه، همان لحظه", text: "کارکرد، تأخیر و مرخصی هر روز، بدون هیچ حساب‌وکتابی.", node: <ReportScreen />, alt: "نمونهٔ نمایشی کارنامهٔ هفتگی اپ شاهد" },
 ];
 
 /// سه آیفون کنار هم؛ وسطی (قطعی GPS) ویژگی شاخص است. صفحه‌ها نمایشی‌اند و با REAL_SCREENS
@@ -176,7 +176,7 @@ export function PhoneShowcase() {
     <section className="lp-section lp-phones-section" id="app">
       <div className="lp-wrap">
         <div className="lp-section-head lp-reveal">
-          <p className="lp-label">اپ حضوریار</p>
+          <p className="lp-label">اپ شاهد</p>
           <h2 className="lp-h2">همان چیزی که کارکنان روی گوشی می‌بینند.</h2>
           <p className="lp-lead">ساده برای کارمند، دقیق برای مدیر. اپ اندروید و نسخهٔ وب برای آیفون.</p>
         </div>

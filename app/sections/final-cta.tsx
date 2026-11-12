@@ -13,6 +13,7 @@ export function FinalCta() {
 
   return (
     <section className="lp-cta" id="contact">
+      <span className="lp-cta-mark" aria-hidden="true" />
       <div className="lp-wrap lp-grid">
         <div className="lp-cta-type">
           <h2>ماه بعد، گزارش حقوق را از سامانه بگیرید.</h2>

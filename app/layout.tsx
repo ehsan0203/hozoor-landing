@@ -10,9 +10,21 @@ export const metadata: Metadata = {
   title: { default: SITE_TITLE, template: `%s — ${SITE_NAME}` },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
-  icons: { icon: "/icons/icon-192.png", apple: "/icons/icon-192.png" },
-  openGraph: { siteName: SITE_NAME, locale: "fa_IR", type: "website" },
-  twitter: { card: "summary" },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/icons/apple-touch-icon.png",
+  },
+  openGraph: {
+    siteName: SITE_NAME,
+    locale: "fa_IR",
+    type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "شاهد — سامانهٔ حضور و غیاب" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og.png"] },
 };
 
 export const viewport: Viewport = {

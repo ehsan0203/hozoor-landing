@@ -10,13 +10,13 @@ import { Roles } from "../sections/roles";
 import { FinalCta } from "../sections/final-cta";
 
 const description =
-  "امکانات حضوریار: تأیید با مکان و وای‌فای، سلفی هنگام ورود، شیفت و تعطیلات، مرخصی و مأموریت، فیش حقوقی خودکار، ثبت آفلاین و چندشعبه‌ای.";
+  "امکانات شاهد: تأیید با مکان و وای‌فای، سلفی هنگام ورود، شیفت و تعطیلات، مرخصی و مأموریت، فیش حقوقی خودکار، ثبت آفلاین و چندشعبه‌ای.";
 
 export const metadata: Metadata = {
   title: "امکانات سامانهٔ حضور و غیاب",
   description,
   alternates: { canonical: "/features/" },
-  openGraph: { title: "امکانات حضوریار", description, url: "/features/", type: "website" },
+  openGraph: { title: "امکانات شاهد", description, url: "/features/", type: "website" },
 };
 
 export default function Page() {

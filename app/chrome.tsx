@@ -45,11 +45,8 @@ export function SiteNav() {
   return (
     <nav className="lp-nav" aria-label="ناوبری اصلی">
       <div className="lp-wrap lp-nav-inner">
-        <Link href="/" className="lp-wordmark">
-          <span className="lp-mark" aria-hidden="true">
-            <IconMark />
-          </span>
-          حضوریار
+        <Link href="/" className="lp-brand" aria-label="شاهد — صفحهٔ اصلی">
+          <BrandLogo />
         </Link>
 
         <div className="lp-nav-links">
@@ -123,11 +120,10 @@ export function SiteFooter() {
   return (
     <footer className="lp-footer">
       <div className="lp-wrap lp-footer-inner">
-        <span className="lp-wordmark">
-          <span className="lp-mark" aria-hidden="true">
-            <IconMark />
-          </span>
-          حضوریار
+        <span className="lp-brand is-footer">
+          {/* پاورقی همیشه تیره است؛ فقط نسخهٔ تیرهٔ لوگو */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/shahed-logo-nav-dark.svg" alt="شاهد — سامانهٔ حضور و غیاب" width={484} height={164} />
         </span>
 
         <nav className="lp-footer-links" aria-label="پیوندهای پاورقی">
@@ -140,7 +136,7 @@ export function SiteFooter() {
         </nav>
 
         <p className="lp-footer-note">
-          حضوریار — سامانهٔ حضور و غیاب مبتنی بر موقعیت مکانی و وای‌فای. پشتیبانی{" "}
+          شاهد — سامانهٔ حضور و غیاب مبتنی بر موقعیت مکانی و وای‌فای. پشتیبانی{" "}
           <a className="num" href={`tel:${supportPhone}`} dir="ltr">
             {formatPhone(supportPhone)}
           </a>
@@ -150,11 +146,15 @@ export function SiteFooter() {
   );
 }
 
-export function IconMark() {
+/// لوگوی افقیِ شاهد؛ نسخهٔ روشن/تاریک با CSS (بر پایهٔ data-theme) عوض می‌شود تا بدون فلش بماند.
+export function BrandLogo() {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 6.5V12l4 2.4" stroke="currentColor" strokeWidth="2" strokeLinecap="square" />
-    </svg>
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="lp-brand-light" src="/brand/shahed-logo-nav-light.svg" alt="شاهد — سامانهٔ حضور و غیاب" width={484} height={164} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="lp-brand-dark" src="/brand/shahed-logo-nav-dark.svg" alt="" aria-hidden="true" width={484} height={164} />
+    </>
   );
 }
 

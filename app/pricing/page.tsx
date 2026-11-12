@@ -12,13 +12,13 @@ import { PLANS } from "@/lib/plans";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 
 const description =
-  "تعرفهٔ سالانهٔ حضوریار بر اساس تعداد کاربر: چهار پلن از ۲ تا ۱۰ کاربر، بدون قرارداد بلندمدت. معادل ماهانه و مقایسهٔ کامل پلن‌ها.";
+  "تعرفهٔ سالانهٔ شاهد بر اساس تعداد کاربر: چهار پلن از ۲ تا ۱۰ کاربر، بدون قرارداد بلندمدت. معادل ماهانه و مقایسهٔ کامل پلن‌ها.";
 
 export const metadata: Metadata = {
   title: "تعرفهٔ سامانهٔ حضور و غیاب",
   description,
   alternates: { canonical: "/pricing/" },
-  openGraph: { title: "تعرفهٔ حضوریار", description, url: "/pricing/", type: "website" },
+  openGraph: { title: "تعرفهٔ شاهد", description, url: "/pricing/", type: "website" },
 };
 
 /// قیمت‌ها در داده‌های ساختاری به ریال می‌آیند (ده برابر تومان).

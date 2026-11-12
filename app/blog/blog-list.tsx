@@ -60,7 +60,7 @@ export function BlogList() {
       <header className="lp-pagehead">
         <div className="lp-wrap">
           <p className="lp-label">
-            بلاگ حضوریار
+            بلاگ شاهد
           </p>
           <h1 className="lp-h1">حضور و غیاب، آن‌طور که در ایران کار می‌کند.</h1>
           <p className="lp-lead">

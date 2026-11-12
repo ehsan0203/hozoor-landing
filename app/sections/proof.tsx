@@ -35,7 +35,7 @@ export function Proof() {
         )}
 
         {CLIENTS.length > 0 && (
-          <ul className="lp-clients lp-reveal" aria-label="مشتریان حضوریار">
+          <ul className="lp-clients lp-reveal" aria-label="مشتریان شاهد">
             {CLIENTS.map((c) => (
               <li key={c}>{c}</li>
             ))}

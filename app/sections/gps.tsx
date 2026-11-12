@@ -37,7 +37,7 @@ export function JammedGpsCase() {
             </div>
           </dl>
 
-          <p className="lp-case-callout">حضوریار مسیر دوم دارد — و مسیر دوم سخت‌گیرتر است، نه سهل‌گیرتر.</p>
+          <p className="lp-case-callout">شاهد مسیر دوم دارد — و مسیر دوم سخت‌گیرتر است، نه سهل‌گیرتر.</p>
         </div>
 
         <div className="lp-case-art lp-reveal">

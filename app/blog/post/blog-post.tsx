@@ -28,7 +28,7 @@ export function BlogPostView() {
         if (cancelled) return;
         setPost(p);
         setState("ready");
-        document.title = `${p.title} — بلاگ حضوریار`;
+        document.title = `${p.title} — بلاگ شاهد`;
       })
       .catch((e) => {
         if (cancelled) return;
